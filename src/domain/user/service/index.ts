@@ -1,15 +1,15 @@
-import { injectable } from 'tsyringe';
+import { injectable, inject } from 'tsyringe';
 import { uuid } from 'uuidv4';
 import { hashSync } from 'bcryptjs';
 
 import HttpError from '@utils/errors/HttpError';
 import HTTP_STATUS from '@utils/resource/HttpStatus.enum';
+import IUserRepository from '../repository/IUserRepository';
 import { IUserDTO } from '../repository/IUserDTO';
-import UserRepository from '../repository/UserRepository';
 
 @injectable()
 export default class UserService {
-  constructor(private userRepository: UserRepository) {}
+  constructor(@inject('UserRepository') private userRepository: IUserRepository) {}
 
   public async findById(id: string) {
     const user = await this.userRepository.findById(id);
