@@ -2,7 +2,11 @@
 
 ---
 
+<center>
+
 ![Node.js CI](https://github.com/m1theus/ts-node-base-app/workflows/Node.js%20CI/badge.svg)
+
+</center>
 
 ---
 
@@ -11,7 +15,7 @@ Steps to run this project:
 1. Run `yarn install` or `npm install` command
 2. Setup database settings inside `ormconfig.json` file
 3. run `yarn | npm typeorm migration:generate -n UserMigration` for generate a `User` migration
-4. run `yarn migrations` or `npm smigrations` command
+4. run `yarn migrations` or `npm migrations` command
 5. Run `yarn start` or `npm start` command
 
 ### Dependencies
