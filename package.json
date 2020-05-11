@@ -28,7 +28,6 @@
     ]
   },
   "scripts": {
-    "ci": "eslint --fix",
     "build": "tsc",
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules src/index.ts",
