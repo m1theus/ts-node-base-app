@@ -4,12 +4,12 @@ import { hashSync } from 'bcryptjs';
 
 import HttpError from '@utils/errors/HttpError';
 import HTTP_STATUS from '@utils/resource/HttpStatus.enum';
-import IUserRepository from '../repository/IUserRepository';
 import { IUserDTO } from '../repository/IUserDTO';
+import UserRepository from '../repository/UserRepository';
 
 @injectable()
 export default class UserService {
-  constructor(private userRepository: IUserRepository) {}
+  constructor(private userRepository: UserRepository) {}
 
   public async findById(id: string) {
     const user = await this.userRepository.findById(id);
