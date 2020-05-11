@@ -9,6 +9,7 @@ import { createConnection } from 'typeorm';
 
 import errorMiddleware from '@utils/middleware';
 import routes from './routes';
+import '@utils/container';
 
 dotenv.config();
 const app = express();
