@@ -19,6 +19,7 @@
     "sourceMap": true,
     "baseUrl": "./src",
     "paths": {
+      "@core/*": ["core/*"],
       "@utils/*": ["utils/*"],
       "@entity/*": ["entity/*"],
       "@domain/*": ["domain/*"]
