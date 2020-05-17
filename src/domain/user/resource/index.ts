@@ -2,17 +2,13 @@ import { Request, Response } from 'express';
 import { container, autoInjectable } from 'tsyringe';
 
 import ResponseEntity from '@utils/resource/ResponseEntity';
-import BaseResource from '@utils/resource/BaseResource';
+import { isValidParams } from '@utils/validations';
 import UserService from '../service';
 
 const requiredParams = ['email', 'password', 'firstName', 'lastName', 'age'];
-const isValidParams = (_params: string[], _request: Request) => (
-  params: string[],
-  { body }: Request,
-) => params.map(param => !body[param])?.filter(value => value)?.length === 0;
 
 @autoInjectable()
-export default class UserResource extends BaseResource {
+export default class UserResource {
   public async one(request: Request, response: Response) {
     const { id } = request.params;
     return ResponseEntity.ok(await container.resolve(UserService).findById(id), response);
