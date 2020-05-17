@@ -7,11 +7,12 @@ class AppServer {
 
   private app = express();
 
+  private middlewares = new CreateMiddlewares(this.app);
+
   async start() {
     console.info('> [server] starting...');
-    const middlewares = new CreateMiddlewares(this.app);
     await CreateDatabaseConnection.start();
-    middlewares.start();
+    this.middlewares.start();
     this.app.listen(this.PORT, () => console.info(`> [server] started on port: ${this.PORT}`));
   }
 }
