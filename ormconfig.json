@@ -9,11 +9,9 @@
   "synchronize": true,
   "logging": false,
   "entities": ["src/domain/**/entity/*.ts"],
-  "migrations": ["src/migration/**/*.ts"],
-  "subscribers": ["src/subscriber/**/*.ts"],
+  "migrations": ["src/migration/*.ts"],
   "cli": {
-    "entitiesDir": "src/domain/**/entity",
-    "migrationsDir": "src/migration",
-    "subscribersDir": "src/subscriber"
+    "entitiesDir": "src/domain/**/entity/*.ts",
+    "migrationsDir": "src/migration/"
   }
 }

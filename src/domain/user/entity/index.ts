@@ -20,20 +20,10 @@ export default class User extends BaseEntity {
   email!: string;
 
   @Column()
-  password!: string;
-
-  @Column({
-    length: 40,
-  })
-  firstName!: string;
-
-  @Column({
-    length: 40,
-  })
-  lastName!: string;
+  username!: string;
 
   @Column()
-  age!: number;
+  password!: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt!: Date;

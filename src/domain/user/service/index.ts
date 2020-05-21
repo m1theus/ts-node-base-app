@@ -11,21 +11,8 @@ import { IUserDTO } from '../repository/IUserDTO';
 export default class UserService {
   constructor(@inject('UserRepository') private userRepository: IUserRepository) {}
 
-  public async findById(id: string) {
-    const user = await this.userRepository.findById(id);
-    if (!user) {
-      throw new HttpError(HTTP_STATUS.NOT_FOUND, 'User Not Found!');
-    }
-    delete user.password;
-    return user;
-  }
-
-  public async findByEmail(email: string) {
-    return this.userRepository.findByEmail(email);
-  }
-
   public async save(user: IUserDTO) {
-    const checkUserExists = await this.userRepository.findByEmail(user.email);
+    const checkUserExists = await this.userRepository.findByUsername(user.username);
 
     if (checkUserExists) {
       throw new HttpError(HTTP_STATUS.CONFLICT, 'Email address already used.');
@@ -39,14 +26,5 @@ export default class UserService {
     });
 
     return savedUser;
-  }
-
-  public async remove(id: string) {
-    const result = await this.userRepository.remove(id);
-
-    if (result?.affected === 0) {
-      throw new HttpError(HTTP_STATUS.NOT_FOUND, 'User Not Found!');
-    }
-    return { removed: true };
   }
 }
