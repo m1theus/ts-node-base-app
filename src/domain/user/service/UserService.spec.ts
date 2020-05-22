@@ -10,8 +10,10 @@ describe('User Service', () => {
     const userService = new UserService(mockUserRepository);
 
     const user = await userService.save({
-      username: 'uNCR',
-      email: 'uNCR@example.com',
+      firstName: 'Matheus',
+      lastName: 'Martins',
+      age: 21,
+      email: 'msilva@example.com',
       password: '123456',
     });
 
@@ -23,17 +25,102 @@ describe('User Service', () => {
     const userService = new UserService(mockUserRepository);
 
     await mockUserRepository.save({
-      username: 'uNCR',
-      email: 'uNCR@example.com',
+      firstName: 'Matheus',
+      lastName: 'Martins',
+      age: 21,
+      email: 'msilva@example.com',
       password: '123456',
     });
 
     expect(
       userService.save({
-        username: 'uNCR',
-        email: 'uNCR@example.com',
+        firstName: 'Matheus',
+        lastName: 'Martins',
+        age: 21,
+        email: 'msilva@example.com',
         password: '123456',
       }),
     ).rejects.toBeInstanceOf(HttpError);
+  });
+
+  it('should be able to find user by id', async () => {
+    const mockUserRepository = new MockUserRepository();
+    const userService = new UserService(mockUserRepository);
+
+    const findUser = await userService.save({
+      firstName: 'Matheus',
+      lastName: 'Martins',
+      age: 21,
+      email: 'msilva@example.com',
+      password: '123456',
+    });
+
+    const user = await userService.findById(findUser.id);
+    expect(user).not.toBeNull();
+    expect(user).toHaveProperty('id');
+  });
+
+  it('should be able to find user by email', async () => {
+    const mockUserRepository = new MockUserRepository();
+    const userService = new UserService(mockUserRepository);
+
+    const findUser = await userService.save({
+      firstName: 'Matheus',
+      lastName: 'Martins',
+      age: 21,
+      email: 'msilva@example.com',
+      password: '123456',
+    });
+
+    const user = await userService.findByEmail(findUser.email);
+    expect(user).not.toBeNull();
+    expect(user).toHaveProperty('id');
+  });
+
+  it('should be expect not found error when find user with invalid id', async () => {
+    const mockUserRepository = new MockUserRepository();
+    const userService = new UserService(mockUserRepository);
+
+    const findUser = await userService.save({
+      firstName: 'Matheus',
+      lastName: 'Martins',
+      age: 21,
+      email: 'msilva@example.com',
+      password: '123456',
+    });
+
+    expect(userService.findById(`${findUser.id}123`)).rejects.toBeInstanceOf(HttpError);
+  });
+
+  it('should be expect not found error when delete user with invalid id', async () => {
+    const mockUserRepository = new MockUserRepository();
+    const userService = new UserService(mockUserRepository);
+
+    const findUser = await userService.save({
+      firstName: 'Matheus',
+      lastName: 'Martins',
+      age: 21,
+      email: 'msilva@example.com',
+      password: '123456',
+    });
+
+    expect(userService.remove(`${findUser.id}123`)).rejects.toBeInstanceOf(HttpError);
+  });
+
+  it('should be able to delete a user with valid id', async () => {
+    const mockUserRepository = new MockUserRepository();
+    const userService = new UserService(mockUserRepository);
+
+    const findUser = await userService.save({
+      firstName: 'Matheus',
+      lastName: 'Martins',
+      age: 21,
+      email: 'msilva@example.com',
+      password: '123456',
+    });
+
+    const result = await userService.remove(`${findUser.id}`);
+    expect(result).toHaveProperty('removed');
+    expect(result).toEqual({ removed: true });
   });
 });

@@ -11,4 +11,7 @@ userRouter.post('/', userResource.save);
 // Authenticated Routes
 userRouter.use(ensureAuthenticated);
 
+userRouter.get('/:id', userResource.one);
+userRouter.delete('/:id', userResource.remove);
+
 export default userRouter;
