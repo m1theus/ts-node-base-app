@@ -34,50 +34,6 @@ npm run migrations
 npm run start
 ```
 
-## Example
-
-`/POST user`
-
-```bash
-curl --location --request POST 'https://ts-node-base-app.herokuapp.com/user' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "email": "m1theus@github.com",
-  "password": "StrongPassword123",
-  "firstName": "Matheus",
-  "lastName": "Martins",
-  "age": 21
-}'
-```
-
-`/POST auth`
-
-```bash
-curl --location --request POST 'https://ts-node-base-app.herokuapp.com/auth' \
---header 'Content-Type: application/json' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "email": "m1theus@github.com",
-  "password": "StrongPassword123"
-}'
-```
-
-`/GET user/:id`
-
-```bash
-curl --location --request GET 'https://ts-node-base-app.herokuapp.com/user/0a0117d6-f6f4-4a96-a47e-3bfc8d6ee32e' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODk3NTczNTYsImV4cCI6MTU4OTc2MDk1Niwic3ViIjoiMGEwMTE3ZDYtZjZmNC00YTk2LWE0N2UtM2JmYzhkNmVlMzJlIn0.fVgV4Qf7o0-sE-rD1nx6L-ChBABHfiJkIY8Qe2MAVcc'
-```
-
-`/DELETE user/:id`
-
-```bash
-curl --location --request DELETE 'https://ts-node-base-app.herokuapp.com/user/0a0117d6-f6f4-4a96-a47e-3bfc8d6ee32e' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODk3NTczNTYsImV4cCI6MTU4OTc2MDk1Niwic3ViIjoiMGEwMTE3ZDYtZjZmNC00YTk2LWE0N2UtM2JmYzhkNmVlMzJlIn0.fVgV4Qf7o0-sE-rD1nx6L-ChBABHfiJkIY8Qe2MAVcc'
-```
-
 ### Dependencies
 
 - [Express](https://expressjs.com/)
